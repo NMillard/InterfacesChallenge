@@ -20,7 +20,6 @@
       <ProjectReference Include="..\..\InterfacesChallenge.Application.Interfaces\InterfacesChallenge.Application.Interfaces.csproj" />
       <ProjectReference Include="..\..\InterfacesChallenge.Domain\InterfacesChallenge.Domain.csproj" />
       <ProjectReference Include="..\..\InterfacesChallenge.WebClient\InterfacesChallenge.WebClient.csproj" />
-      <ProjectReference Include="..\InterfacesChallenge.WebClient\InterfacesChallenge.WebClient.csproj" />
     </ItemGroup>
 
 </Project>
