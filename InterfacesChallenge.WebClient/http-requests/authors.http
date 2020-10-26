@@ -1,0 +1,24 @@
+GET {{url}}/authors
+Accept: application/json
+
+###
+
+GET {{url}}/authors/nicm
+Accept: application/json
+
+###
+
+POST {{url}}/authors/article
+Content-Type: application/json
+
+{
+  "penName": "nicm",
+  "articleTitle": "New article draft"
+}
+
+###
+
+GET {{url}}/articles
+Accept: application/json
+
+###

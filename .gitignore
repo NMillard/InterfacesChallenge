@@ -1,0 +1,10 @@
+bin/
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+
+**/appsettings.*.json
+
+.idea
+InterfacesChallenge.sln.DotSettings.user
