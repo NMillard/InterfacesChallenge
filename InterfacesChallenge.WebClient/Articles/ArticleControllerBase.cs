@@ -1,5 +1,5 @@
 using InterfacesChallenge.WebClient.Generics;
-using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Mvc;
 
 namespace InterfacesChallenge.WebClient.Articles {
     [Route("api/articles")]
