@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Threading.Tasks;
+using InterfacesChallenge.Application.Fakes.Articles;
+using InterfacesChallenge.Application.Interfaces.Articles;
 using InterfacesChallenge.Application.Interfaces.Authors;
 using InterfacesChallenge.Domain;
 
@@ -11,13 +13,13 @@ namespace InterfacesChallenge.Application.Fakes.Authors {
             this.repositoryFake = repositoryFake;
         }
         
-        public async Task<Author?> ExecuteAsync(string penName) {
+        public async Task<IAuthor?> ExecuteAsync(string penName) {
             var author = new Author(penName);
 
             if (repositoryFake.Authors.SingleOrDefault(a => a.PenName.Equals(penName)) is {}) return null;
             repositoryFake.Authors.Add(author);
 
-            return author;
+            return (AuthorDto?) author;
         }
     }
     
@@ -28,11 +30,11 @@ namespace InterfacesChallenge.Application.Fakes.Authors {
             this.repositoryFake = repositoryFake;
         }
         
-        public async Task<Article?> ExecuteAsync(string penName, string articleTitle) {
+        public async Task<IArticle?> ExecuteAsync(string penName, string articleTitle) {
             Author? author = repositoryFake.Authors.SingleOrDefault(a => a.PenName.Equals(penName));
             Article? article =  author?.BeginArticle(articleTitle);
 
-            return article;
+            return (ArticleDto?) article;
         }
     }
 }

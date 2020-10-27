@@ -13,6 +13,7 @@ namespace InterfacesChallenge.Application.Fakes.Articles {
             this.repository = repository;
         }
         
-        public async Task<IEnumerable<Article>> ExecuteAsync() => repository.Authors.SelectMany(a => a.Articles);
+        public async Task<IEnumerable<IArticle>> ExecuteAsync() => repository.Authors.SelectMany(a => a.Articles)
+            .Select(article => (ArticleDto) article);
     }
 }
