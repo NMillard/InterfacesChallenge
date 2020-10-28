@@ -1,4 +1,5 @@
 using InterfacesChallenge.Application.Fakes;
+using InterfacesChallenge.DataLayer.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,8 @@ namespace InterfacesChallenge.WebClient {
             services.AddControllers();
 
             services.AddQueries().AddCommands();
+
+            services.AddRepositories();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {

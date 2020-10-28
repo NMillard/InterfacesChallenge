@@ -3,35 +3,36 @@ using System.Threading.Tasks;
 using InterfacesChallenge.Application.Fakes.Articles;
 using InterfacesChallenge.Application.Interfaces.Articles;
 using InterfacesChallenge.Application.Interfaces.Authors;
+using InterfacesChallenge.Application.Interfaces.Repositories;
 using InterfacesChallenge.Domain;
 
 namespace InterfacesChallenge.Application.Fakes.Authors {
     internal class CreateAuthorFake : ICreateAuthor {
-        private readonly AuthorRepositoryFake repositoryFake;
+        private readonly IAuthorRepository repository;
 
-        public CreateAuthorFake(AuthorRepositoryFake repositoryFake) {
-            this.repositoryFake = repositoryFake;
+        public CreateAuthorFake(IAuthorRepository repository) {
+            this.repository = repository;
         }
         
         public async Task<IAuthor?> ExecuteAsync(string penName) {
             var author = new Author(penName);
 
-            if (repositoryFake.Authors.SingleOrDefault(a => a.PenName.Equals(penName)) is {}) return null;
-            repositoryFake.Authors.Add(author);
+            if (repository.Authors.SingleOrDefault(a => a.PenName.Equals(penName)) is {}) return null;
+            bool result = repository.AddAuthor(author);
 
-            return (AuthorDto?) author;
+            return result ? (AuthorDto?) author : null;
         }
     }
     
     internal class BeginArticleFake : IBeginArticle {
-        private readonly AuthorRepositoryFake repositoryFake;
+        private readonly IAuthorRepository repository;
 
-        public BeginArticleFake(AuthorRepositoryFake repositoryFake) {
-            this.repositoryFake = repositoryFake;
+        public BeginArticleFake(IAuthorRepository repository) {
+            this.repository = repository;
         }
         
         public async Task<IArticle?> ExecuteAsync(string penName, string articleTitle) {
-            Author? author = repositoryFake.Authors.SingleOrDefault(a => a.PenName.Equals(penName));
+            Author? author = repository.Authors.SingleOrDefault(a => a.PenName.Equals(penName));
             Article? article =  author?.BeginArticle(articleTitle);
 
             return (ArticleDto?) article;

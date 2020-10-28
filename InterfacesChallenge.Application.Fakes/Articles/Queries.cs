@@ -1,15 +1,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using InterfacesChallenge.Application.Fakes.Authors;
 using InterfacesChallenge.Application.Interfaces.Articles;
-using InterfacesChallenge.Domain;
+using InterfacesChallenge.Application.Interfaces.Repositories;
 
 namespace InterfacesChallenge.Application.Fakes.Articles {
     public class GetArticlesFake : IGetArticles {
-        private readonly AuthorRepositoryFake repository;
+        private readonly IAuthorRepository repository;
 
-        public GetArticlesFake(AuthorRepositoryFake repository) {
+        public GetArticlesFake(IAuthorRepository repository) {
             this.repository = repository;
         }
         
