@@ -2,20 +2,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using InterfacesChallenge.Application.Fakes.Articles;
+using InterfacesChallenge.Application.Fakes.Interfaces;
 using InterfacesChallenge.Application.Interfaces.Articles;
 using InterfacesChallenge.Application.Interfaces.Authors;
-using InterfacesChallenge.Application.Interfaces.Repositories;
 using InterfacesChallenge.Domain;
 
 namespace InterfacesChallenge.Application.Fakes.Authors {
     internal class GetAuthors : IGetAuthors {
-        private readonly IAuthorRepository repository;
+        private readonly IAuthorFakeRepository fakeRepository;
 
-        public GetAuthors(IAuthorRepository repository) {
-            this.repository = repository;
+        public GetAuthors(IAuthorFakeRepository fakeRepository) {
+            this.fakeRepository = fakeRepository;
         }
 
-        public async Task<IEnumerable<IAuthor>> ExecuteAsync() => repository
+        public async Task<IEnumerable<IAuthor>> ExecuteAsync() => fakeRepository
             .Authors
             .Select(author => new AuthorDto(
                 author.PenName,
@@ -24,14 +24,14 @@ namespace InterfacesChallenge.Application.Fakes.Authors {
     }
     
     internal class GetAuthor : IGetAuthor {
-        private readonly IAuthorRepository repository;
+        private readonly IAuthorFakeRepository fakeRepository;
 
-        public GetAuthor(IAuthorRepository repository) {
-            this.repository = repository;
+        public GetAuthor(IAuthorFakeRepository fakeRepository) {
+            this.fakeRepository = fakeRepository;
         }
 
         public async Task<IAuthor?> ExecuteAsync(string penName) {
-            Author? author = repository
+            Author? author = fakeRepository
                 .Authors
                 .SingleOrDefault(a => a.PenName.Equals(penName));
 

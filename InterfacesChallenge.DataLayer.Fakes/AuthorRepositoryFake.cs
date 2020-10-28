@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using InterfacesChallenge.Application.Interfaces.Repositories;
+using InterfacesChallenge.Application.Fakes.Interfaces;
 using InterfacesChallenge.Domain;
 
 namespace InterfacesChallenge.DataLayer.Interfaces {
-    internal class AuthorRepositoryFake : IAuthorRepository {
+    internal class AuthorRepositoryFake : IAuthorFakeRepository {
         private readonly List<Author> authors;
         
         public AuthorRepositoryFake() {

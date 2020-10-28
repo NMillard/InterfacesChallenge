@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using InterfacesChallenge.Domain;
 
-namespace InterfacesChallenge.Application.Interfaces.Repositories {
-    public interface IAuthorRepository {
+namespace InterfacesChallenge.Application.Fakes.Interfaces {
+    public interface IAuthorFakeRepository {
         IEnumerable<Author> Authors { get; }
         bool AddAuthor(Author author);
     }

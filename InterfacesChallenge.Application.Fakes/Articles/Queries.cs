@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InterfacesChallenge.Application.Fakes.Interfaces;
 using InterfacesChallenge.Application.Interfaces.Articles;
-using InterfacesChallenge.Application.Interfaces.Repositories;
 
 namespace InterfacesChallenge.Application.Fakes.Articles {
     public class GetArticlesFake : IGetArticles {
-        private readonly IAuthorRepository repository;
+        private readonly IAuthorFakeRepository fakeRepository;
 
-        public GetArticlesFake(IAuthorRepository repository) {
-            this.repository = repository;
+        public GetArticlesFake(IAuthorFakeRepository fakeRepository) {
+            this.fakeRepository = fakeRepository;
         }
         
-        public async Task<IEnumerable<IArticle>> ExecuteAsync() => repository.Authors.SelectMany(a => a.Articles)
+        public async Task<IEnumerable<IArticle>> ExecuteAsync() => fakeRepository.Authors.SelectMany(a => a.Articles)
             .Select(article => (ArticleDto) article);
     }
 }
